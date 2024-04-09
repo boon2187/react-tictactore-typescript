@@ -29,7 +29,8 @@ export default function Board(){
 
     // ここでsquaresのコピーを作成し、そのコピーを変更している
     // const nextSquares = squares.slice();
-    const nextSquares = [...squares];
+    // const nextSquares = [...squares];
+    const nextSquares = JSON.parse(JSON.stringify(squares));
     // console.log(nextSquares);
     // console.log(squares);
     nextSquares[i] = xIsNext ? 'X' : 'O';
