@@ -16,6 +16,13 @@ export default function Board(){
   // }
   status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
+
+  // マス目をクリックしたときの処理
+  // i: クリックされたマス目の番号
+  // ここでsquaresのコピーを作成し、そのコピーを変更している
+  // Clickされたマス目にXかOを入れる
+  // XかOかはxIsNextで判断する
+  // 次のターンに切り替えるためにプレーヤーを切り替えてこの処理は終了
   function handleClick(i: number): void {
     // すでに埋まっていたら何もしない、または勝者が決まっていたら何もしない
     if (squares[i] || calculateWinner(squares)) return;
@@ -37,6 +44,12 @@ export default function Board(){
   };
 
   // 勝者を判定する関数
+  // squares: 盤の状態
+  // 勝者がいる場合は勝者の文字列を返す
+  // 勝者がいない場合はnullを返す
+  // lines: 勝ちパターン
+  // 勝ちパターンのマス目がすべて同じ文字列だった場合、その文字列を返して勝者を決定する
+  // 例: squares[0] === squares[1] === squares[2] ならば squares[0] を返す
   function calculateWinner(squares: (string | null)[]): string | null {
     // 勝ちパターン
     const lines = [
